@@ -14,8 +14,6 @@ employee_count <- function (df, x=df$Q1_Org_Type, y){
   filter(df, df$Q1_Org_Type != "Other")
   group_by(x)
   count(y)
-}
-employee_count(df, y=`Q2_No_of_Employees`) # This returns an error that filter can't apply to logical class
-# Do I need to use if else?
+} # This clearly doesn't work!
 
 
