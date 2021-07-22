@@ -8,12 +8,22 @@ Q1_Table <- df %>%
   group_by(Q1_Org_Type) %>% 
   count(Q2_No_of_Employees) # this is the part which will vary, the filter and group_by will stay the same.
 
-# How to create a function that does this?
-function (df, x) {} # what argument do I feed it, the column name?
-employee_count <- function (df, x=df$Q1_Org_Type, y){
-  filter(df, df$Q1_Org_Type != "Other")
-  group_by(x)
-  count(y)
-} # This clearly doesn't work!
+Q1_Table
+
+###########################
+# Function that does this #
+employer_count <- function(df, col_y){
+  df <- df %>%filter(Q1_Org_Type != "Other")
+  df <- df %>%  
+    add_count(Q1_Org_Type, df[[col_y]])
+  return(df)   
+}
+
+Q1_Table_function <- employer_count(df, "Q2_No_of_Employees")
+
+Q1_Table
+Q1_Table_function
+str(df)
+
 
 
