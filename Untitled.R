@@ -14,7 +14,7 @@ Q1_Table
 # Function that does this #
 employer_count <- function(df, col_y){
   df <- df %>%filter(Q1_Org_Type != "Other")
-  df <- df %>%  
+  df <- df %>% 
     add_count(Q1_Org_Type, df[[col_y]])
   return(df)   
 }
@@ -25,5 +25,12 @@ Q1_Table
 Q1_Table_function
 str(df)
 
-
+# This version gets rid of the duplicated column
+employer_count2 <- function(df, col_y){
+  df <- df %>%filter(Q1_Org_Type != "Other")
+  df <- df %>% group_by(Q1_Org_Type) %>% 
+    count(.[[col_y]])
+  return(df)   
+}
+employer_count2(df, "Q2_No_of_Employees")
 
