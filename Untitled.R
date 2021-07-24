@@ -27,9 +27,9 @@ str(df)
 
 # This version gets rid of the duplicated column
 employer_count2 <- function(df, col_y){
-  df <- df %>%filter(Q1_Org_Type != "Other")
-  df <- df %>% group_by(Q1_Org_Type) %>% 
-    count(.[[col_y]])
+  df <- df %>% filter(Q1_Org_Type != "Other")
+  df <- df %>% group_by(Q1_Org_Type) %>%
+  count(.[[col_y]])
   return(df)   
 }
 Q1_Table_function2 <- employer_count2(df, "Q2_No_of_Employees")
