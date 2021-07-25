@@ -11,7 +11,9 @@ create_summary_tables <- function(df, yearly = "", monthly = "", weekly = "") {
         ddply(.(year, category), summarise,
             cost = sum(amount))  %>%
         mutate(cumulative_spend = cumsum(cost))
-    if (yearly == "Y" | yearly == "y") {
+    if (yearly == "Y" | yearly == "y") { 
+#         easy mode solution is for each if, to do
+#         if (yearly == "Y" | yearly == "y") | yearly == "M" | yearly == "m" | yearly == "W" | yearly == "w" {
     yearly_table <<- smr_y  %>%
         dplyr::select(-cumulative_spend) %>%
         tidyr::pivot_wider(names_from = category, values_from = cost) %>%
